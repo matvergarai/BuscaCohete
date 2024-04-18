@@ -19,6 +19,7 @@ from django.urls import path
 from core import views
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
@@ -35,4 +36,7 @@ urlpatterns = [
     path('change_password/', views.change_password, name='change_password'),
     path('about_us/', views.about_us, name='about_us'),
     path('contact_us/', views.contact_us, name='contact_us'),
+    path('api/sitiosbloqueados/',views.SitiosBloqueadosListView.as_view(), name='sitiosbloqueados-list'),
+    path('bloquearsitio/', views.bloquear_sitio, name='bloquearsitio'),
+
 ]

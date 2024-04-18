@@ -1,10 +1,28 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from rest_framework import generics
+from .models import SitiosBloqueados
+from .serializers import SitiosBloqueadosSerializer
+from .forms import SitiosBloqueadosForm
 
-from django.shortcuts import render
+def bloquear_sitio(request):
+    if request.method == 'POST':
+        form = SitiosBloqueadosForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('bloquearsitio')  # Redirige a donde quieras después de procesar el formulario
+    else:
+        form = SitiosBloqueadosForm()
+    return render(request, 'core/formulario_sitio_bloqueado.html', {'form': form})
+
+
+class SitiosBloqueadosListView(generics.ListAPIView):
+    queryset = SitiosBloqueados.objects.all()
+    serializer_class = SitiosBloqueadosSerializer
 
 def home(request):
     # Lógica para la vista de la página de inicio
     return render(request, 'core/home.html')
+
 
 def login(request):
     # Lógica para la vista de inicio de sesión
