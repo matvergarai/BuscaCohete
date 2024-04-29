@@ -28,9 +28,9 @@ def login(request):
     # Lógica para la vista de inicio de sesión
     return render(request, 'core/login.html')
 
-def register(request):
+def registro_supervisor(request):
     # Lógica para la vista de registro
-    return render(request, 'core/register.html')
+    return render(request, 'core/registro.html')
 
 def forgot_password(request):
     # Lógica para la vista de olvido de contraseña
